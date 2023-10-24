@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./create-thought.component.css']
 })
 export class CreateThoughtComponent {
-
+  pensamento = {
+    id: '1',
+    conteudo: "Aprendendo Angular",
+    autoria: "Dev",
+    modelo: ""
+  }
 }
