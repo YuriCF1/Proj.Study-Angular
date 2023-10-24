@@ -4,12 +4,19 @@
   </header>
   <form>
     <label for="pensamento">Pensamento</label>
+    <!-- Associando os dados com o arquivo TS
+    MÉTODO DE ASSOCIAÇÃO  Property Bind
+      - Colocar o valor dinâmico em colchetes
+    - Criar objeto lá no TS, e definir as chaves e valores
+    -
+    -->
     <input
       class="input"
       id="pensamento"
       type="textarea"
       name="pensamento"
       placeholder="Digite seu pensamento"
+      [value]="pensamento.conteudo"
     />
     <label for="autoria">Autoria</label>
     <input
@@ -18,6 +25,7 @@
       type="text"
       name="autoria"
       placeholder="Digite a autoria ou fonte"
+      [value]="pensamento.autoria"
     />
     <label for="modelo">Selecione o modelo do card:</label>
     <div class="container-radio">
@@ -32,8 +40,9 @@
         Prévia:
         <div class="modelo modelo1 ff-roboto-mono">
           <img src="../../../../assets/imagens/modelo1.png" alt="Aspas azuis" />
-          <p class="conteudo">Aqui vai o conteúdoo</p>
-          <p class="autoria"><b>Aqui vai o autoria</b></p>
+          <!-- Passando valores por Property Bind, sendo interpolação -->
+          <p class="conteudo">{{ pensamento.conteudo }}</p>
+          <p class="autoria"><b>{{ pensamento.autoria }}</b></p>
         </div>
       </div>
       <div class="radio-modelo">
@@ -50,8 +59,8 @@
             src="../../../../assets/imagens/modelo2.png"
             alt="Aspas azul claro"
           />
-          <p class="conteudo">Aqui vai o conteúdoo</p>
-          <p class="autoria"><b>Aqui vai o autoria</b></p>
+          <p class="conteudo">{{ pensamento.conteudo }}</p>
+          <p class="autoria"><b>{{ pensamento.autoria }}</b></p>
         </div>
       </div>
       <div class="radio-modelo">
@@ -68,8 +77,8 @@
             src="../../../../assets/imagens/modelo3.png"
             alt="Aspas verdes"
           />
-          <p class="conteudo">Aqui vai o conteúdoo</p>
-          <p class="autoria"><b>Aqui vai o autoria</b></p>
+          <p class="conteudo">{{ pensamento.conteudo }}</p>
+          <p class="autoria"><b>{{ pensamento.autoria }}</b></p>
         </div>
       </div>
     </div>
