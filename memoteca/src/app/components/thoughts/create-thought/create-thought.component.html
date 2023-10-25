@@ -83,8 +83,9 @@
       </div>
     </div>
     <div class="acoes">
-      <button class="botao">Salvar</button>
-      <button class="botao cancelar">Cancelar</button>
+      <!-- Event bind. Outro tipo de data bind unirecional, porém a direção é dp template para o componente  -->
+      <button (click)="criarPensamento()" class="botao">Salvar</button>
+      <button (click)="cancelandoPensamento()" class="botao cancelar">Cancelar</button>
     </div>
   </form>
 </section>
