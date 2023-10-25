@@ -12,4 +12,11 @@ export class CreateThoughtComponent {
     autoria: "Dev",
     modelo: ""
   }
+
+  criarPensamento() {
+    alert("Clicado")
+  }
+  cancelandoPensamento() {
+    alert("Cancelado")
+  }
 }
