@@ -8,15 +8,16 @@
     MÉTODO DE ASSOCIAÇÃO  Property Bind
       - Colocar o valor dinâmico em colchetes
     - Criar objeto lá no TS, e definir as chaves e valores
-    -
+--One way data biding  [value]="pensamento.conteudo"
     -->
+    <!-- Preciso importar o FormsModule no app.module.ts para que o ngModule funciona no input abaixo-->
     <input
       class="input"
       id="pensamento"
       type="textarea"
       name="pensamento"
       placeholder="Digite seu pensamento"
-      [value]="pensamento.conteudo"
+      [(ngModel)]="pensamento.conteudo"
     />
     <label for="autoria">Autoria</label>
     <input
@@ -25,13 +26,13 @@
       type="text"
       name="autoria"
       placeholder="Digite a autoria ou fonte"
-      [value]="pensamento.autoria"
+      [(ngModel)]="pensamento.autoria"
     />
     <label for="modelo">Selecione o modelo do card:</label>
     <div class="container-radio">
       <div class="radio-modelo">
-        <label for="modelo2">
-          <input type="radio" id="modelo2" value="modelo1" name="modelo-card" />
+        <label for="modelo1">
+          <input type="radio" id="modelo2" [(ngModel)]="pensamento.modelo" name="modelo-card" />
           <div class="custom-radio">
             <span></span>
           </div>
@@ -42,12 +43,14 @@
           <img src="../../../../assets/imagens/modelo1.png" alt="Aspas azuis" />
           <!-- Passando valores por Property Bind, sendo interpolação -->
           <p class="conteudo">{{ pensamento.conteudo }}</p>
-          <p class="autoria"><b>{{ pensamento.autoria }}</b></p>
+          <p class="autoria">
+            <b>{{ pensamento.autoria }}</b>
+          </p>
         </div>
       </div>
       <div class="radio-modelo">
         <label for="modelo2">
-          <input type="radio" id="modelo2" value="modelo2" name="modelo-card" />
+          <input type="radio" id="modelo2" [(ngModel)]="pensamento.modelo" name="modelo-card" />
           <div class="custom-radio">
             <span></span>
           </div>
@@ -60,12 +63,14 @@
             alt="Aspas azul claro"
           />
           <p class="conteudo">{{ pensamento.conteudo }}</p>
-          <p class="autoria"><b>{{ pensamento.autoria }}</b></p>
+          <p class="autoria">
+            <b>{{ pensamento.autoria }}</b>
+          </p>
         </div>
       </div>
       <div class="radio-modelo">
         <label for="modelo3">
-          <input type="radio" id="modelo3" value="modelo3" name="modelo-card" />
+          <input type="radio" id="modelo3" [(ngModel)]="pensamento.modelo" name="modelo-card" />
           <div class="custom-radio">
             <span></span>
           </div>
@@ -78,14 +83,18 @@
             alt="Aspas verdes"
           />
           <p class="conteudo">{{ pensamento.conteudo }}</p>
-          <p class="autoria"><b>{{ pensamento.autoria }}</b></p>
+          <p class="autoria">
+            <b>{{ pensamento.autoria }}</b>
+          </p>
         </div>
       </div>
     </div>
     <div class="acoes">
       <!-- Event bind. Outro tipo de data bind unirecional, porém a direção é dp template para o componente  -->
       <button (click)="criarPensamento()" class="botao">Salvar</button>
-      <button (click)="cancelandoPensamento()" class="botao cancelar">Cancelar</button>
+      <button (click)="cancelandoPensamento()" class="botao cancelar">
+        Cancelar
+      </button>
     </div>
   </form>
 </section>
