@@ -32,7 +32,12 @@
     <div class="container-radio">
       <div class="radio-modelo">
         <label for="modelo1">
-          <input type="radio" id="modelo2" [(ngModel)]="pensamento.modelo" name="modelo-card" />
+          <input
+            type="radio"
+            id="modelo2"
+            [(ngModel)]="pensamento.modelo"
+            name="modelo-card"
+          />
           <div class="custom-radio">
             <span></span>
           </div>
@@ -50,7 +55,12 @@
       </div>
       <div class="radio-modelo">
         <label for="modelo2">
-          <input type="radio" id="modelo2" [(ngModel)]="pensamento.modelo" name="modelo-card" />
+          <input
+            type="radio"
+            id="modelo2"
+            [(ngModel)]="pensamento.modelo"
+            name="modelo-card"
+          />
           <div class="custom-radio">
             <span></span>
           </div>
@@ -70,7 +80,12 @@
       </div>
       <div class="radio-modelo">
         <label for="modelo3">
-          <input type="radio" id="modelo3" [(ngModel)]="pensamento.modelo" name="modelo-card" />
+          <input
+            type="radio"
+            id="modelo3"
+            [(ngModel)]="pensamento.modelo"
+            name="modelo-card"
+          />
           <div class="custom-radio">
             <span></span>
           </div>
@@ -92,7 +107,11 @@
     <div class="acoes">
       <!-- Event bind. Outro tipo de data bind unirecional, porém a direção é dp template para o componente  -->
       <button (click)="criarPensamento()" class="botao">Salvar</button>
-      <button (click)="cancelandoPensamento()" class="botao cancelar" routerLink="/list-thought">
+      <button
+        (click)="cancelandoPensamento()"
+        class="botao cancelar"
+        routerLink="/list-thought"
+      >
         Cancelar
       </button>
     </div>
