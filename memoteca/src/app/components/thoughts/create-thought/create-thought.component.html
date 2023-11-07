@@ -28,13 +28,14 @@
       placeholder="Digite a autoria ou fonte"
       [(ngModel)]="pensamento.autoria"
     />
-    <label for="modelo">Selecione o modelo do card:</label>
+    <label for="modelo1">Selecione o modelo do card:</label>
     <div class="container-radio">
       <div class="radio-modelo">
         <label for="modelo1">
           <input
             type="radio"
-            id="modelo2"
+            id="modelo1"
+            value="modelo1"
             [(ngModel)]="pensamento.modelo"
             name="modelo-card"
           />
@@ -58,8 +59,9 @@
           <input
             type="radio"
             id="modelo2"
-            [(ngModel)]="pensamento.modelo"
+            value="modelo2"
             name="modelo-card"
+            [(ngModel)]="pensamento.modelo"
           />
           <div class="custom-radio">
             <span></span>
@@ -83,8 +85,9 @@
           <input
             type="radio"
             id="modelo3"
-            [(ngModel)]="pensamento.modelo"
+            value="modelo3"
             name="modelo-card"
+            [(ngModel)]="pensamento.modelo"
           />
           <div class="custom-radio">
             <span></span>
