@@ -107,6 +107,8 @@
     <div class="acoes">
       <!-- Event bind. Outro tipo de data bind unirecional, porém a direção é dp template para o componente  -->
       <button (click)="criarPensamento()" class="botao">Salvar</button>
+      <!-- Caso eu queira colocar uma classe no botão atual da rota, eu coloco tal propriedade na tag, e o nome  da classe que quero adicionar caso o botão esteja tivo -->
+      <!-- routerLinkActive="active" -->
       <button
         (click)="cancelandoPensamento()"
         class="botao cancelar"
