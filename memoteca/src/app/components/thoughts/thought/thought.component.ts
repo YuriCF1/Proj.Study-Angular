@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./thought.component.css']
 })
 export class ThoughtComponent {
-  // O Input diz que a proprieade pensamento, receberá informações de componente pai
+  // O Input diz que a proprieade pensamento, receberá informações de componente pai, e não daqui
   @Input() pensamento = {
     conteudo: "I love Angular",
     autoria: "Yuri Cruz",
