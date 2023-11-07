@@ -5,9 +5,16 @@
       Adicionar pensamento
     </button>
   </header>
-  <div class="mural">
+  <!-- Fazendo um IF ELSE no angular -->
+  <div class="mural" *ngIf="listThought.length > 0; else semPensamentos">
     <div *ngFor="let thought of listThought">
       <app-thought [pensamento]="thought"></app-thought>
     </div>
   </div>
 </section>
+<!-- <ng-template [ngTemplateOutlet]="outlet" [ngOutletContext]="context"> -->
+<ng-template #semPensamentos>
+  <div class="ff-inter sem-pensamentos">
+    <p>Ainda não há pensamentos cadastrados</p>
+  </div>
+</ng-template>
