@@ -1,4 +1,5 @@
-<div class="pensamento {{ pensamento.modelo }} ff-robot-mono pensamento-p">
+<!-- <div class="pensamento {{ pensamento.modelo }} ff-robot-mono pensamento-p"> -->
+<div class="pensamento {{ pensamento.modelo }} ff-robot-mono" [ngClass]="larguraPensamento()">
   <img
     src="/assets/imagens/{{ pensamento.modelo }}.png"
     alt="Aspas coloridas"
