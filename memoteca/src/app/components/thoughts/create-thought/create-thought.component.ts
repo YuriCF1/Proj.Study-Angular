@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ThoughtInterface } from '../ITthought';
 
 @Component({
   selector: 'app-create-thought',
@@ -6,8 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./create-thought.component.css']
 })
 export class CreateThoughtComponent {
-  pensamento = {
-    id: '1',
+  pensamento: ThoughtInterface = {
+    id: 1,
     conteudo: "Aprendendo Angular",
     autoria: "Dev",
     modelo: "modelo1"
