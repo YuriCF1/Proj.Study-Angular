@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { ThoughtInterface } from '../ITthought';
 
 @Component({
   selector: 'app-thought',
@@ -7,7 +8,8 @@ import { Component, Input } from '@angular/core';
 })
 export class ThoughtComponent {
   // O Input diz que a proprieade pensamento, receberá informações de componente pai, e não daqui
-  @Input() pensamento = {
+  @Input() pensamento: ThoughtInterface = {
+    id: 0,
     conteudo: "I love Angular",
     autoria: "Yuri Cruz",
     modelo: "modelo1"
