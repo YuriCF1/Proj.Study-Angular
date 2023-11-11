@@ -9,6 +9,7 @@ import { CreateThoughtComponent } from './components/thoughts/create-thought/cre
 import { FormsModule } from '@angular/forms';
 import { ListToughtsComponent } from './components/thoughts/list-toughts/list-toughts.component';
 import { ThoughtComponent } from './components/thoughts/thought/thought.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ThoughtComponent } from './components/thoughts/thought/thought.componen
     BrowserModule,
     AppRoutingModule,
     // Preciso importar o FormsModule abaixo para que o ngModule funciona no input
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
