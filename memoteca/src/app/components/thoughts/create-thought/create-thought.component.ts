@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ThoughtInterface } from '../ITthought';
+import { ThoughtService } from '../thought.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-thought',
@@ -7,17 +9,27 @@ import { ThoughtInterface } from '../ITthought';
   styleUrls: ['./create-thought.component.css']
 })
 export class CreateThoughtComponent {
-  pensamento: ThoughtInterface = {
-    id: 1,
-    conteudo: "Aprendendo Angular",
-    autoria: "Dev",
-    modelo: "modelo1"
+  pensamentoFeito: ThoughtInterface = {
+    conteudo: "",
+    autoria: "",
+    modelo: ""
   }
 
+  constructor(
+    private service: ThoughtService,
+    private router: Router) { }
+
+  // criarPensamento() {
+  //   alert("Clicado")
+  // }
+
   criarPensamento() {
-    alert("Clicado")
+    this.service.createThought(this.pensamentoFeito).subscribe(() => {
+      this.router.navigate(['/list-thought'])
+    })
   }
+
   cancelandoPensamento() {
-    alert("Cancelado")
+    this.router.navigate(['/list-thought'])
   }
 }
