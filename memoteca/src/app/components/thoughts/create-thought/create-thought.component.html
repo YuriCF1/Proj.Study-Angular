@@ -17,7 +17,7 @@
       type="textarea"
       name="pensamento"
       placeholder="Digite seu pensamento"
-      [(ngModel)]="pensamento.conteudo"
+      [(ngModel)]="pensamentoFeito.conteudo"
     />
     <label for="autoria">Autoria</label>
     <input
@@ -26,7 +26,7 @@
       type="text"
       name="autoria"
       placeholder="Digite a autoria ou fonte"
-      [(ngModel)]="pensamento.autoria"
+      [(ngModel)]="pensamentoFeito.autoria"
     />
     <label for="modelo1">Selecione o modelo do card:</label>
     <div class="container-radio">
@@ -36,7 +36,7 @@
             type="radio"
             id="modelo1"
             value="modelo1"
-            [(ngModel)]="pensamento.modelo"
+            [(ngModel)]="pensamentoFeito.modelo"
             name="modelo-card"
           />
           <div class="custom-radio">
@@ -48,9 +48,9 @@
         <div class="modelo modelo1 ff-roboto-mono">
           <img src="../../../../assets/imagens/modelo1.png" alt="Aspas azuis" />
           <!-- Passando valores por Property Bind, sendo interpolação -->
-          <p class="conteudo">{{ pensamento.conteudo }}</p>
+          <p class="conteudo">{{ pensamentoFeito.conteudo }}</p>
           <p class="autoria">
-            <b>{{ pensamento.autoria }}</b>
+            <b>{{ pensamentoFeito.autoria }}</b>
           </p>
         </div>
       </div>
@@ -61,7 +61,7 @@
             id="modelo2"
             value="modelo2"
             name="modelo-card"
-            [(ngModel)]="pensamento.modelo"
+            [(ngModel)]="pensamentoFeito.modelo"
           />
           <div class="custom-radio">
             <span></span>
@@ -74,9 +74,9 @@
             src="../../../../assets/imagens/modelo2.png"
             alt="Aspas azul claro"
           />
-          <p class="conteudo">{{ pensamento.conteudo }}</p>
+          <p class="conteudo">{{ pensamentoFeito.conteudo }}</p>
           <p class="autoria">
-            <b>{{ pensamento.autoria }}</b>
+            <b>{{ pensamentoFeito.autoria }}</b>
           </p>
         </div>
       </div>
@@ -87,7 +87,7 @@
             id="modelo3"
             value="modelo3"
             name="modelo-card"
-            [(ngModel)]="pensamento.modelo"
+            [(ngModel)]="pensamentoFeito.modelo"
           />
           <div class="custom-radio">
             <span></span>
@@ -100,22 +100,23 @@
             src="../../../../assets/imagens/modelo3.png"
             alt="Aspas verdes"
           />
-          <p class="conteudo">{{ pensamento.conteudo }}</p>
+          <p class="conteudo">{{ pensamentoFeito.conteudo }}</p>
           <p class="autoria">
-            <b>{{ pensamento.autoria }}</b>
+            <b>{{ pensamentoFeito.autoria }}</b>
           </p>
         </div>
       </div>
     </div>
     <div class="acoes">
       <!-- Event bind. Outro tipo de data bind unirecional, porém a direção é dp template para o componente  -->
-      <button (click)="criarPensamento()" class="botao">Salvar</button>
       <!-- Caso eu queira colocar uma classe no botão atual da rota, eu coloco tal propriedade na tag, e o nome  da classe que quero adicionar caso o botão esteja tivo -->
       <!-- routerLinkActive="active" -->
+      <button (click)="criarPensamento()" class="botao">Salvar</button>
+      <!-- Caso  eu queira redirecionar assim que for clicado, logo aqui no HTML -->
+      <!-- routerLink="/list-thought" -->
       <button
         (click)="cancelandoPensamento()"
         class="botao cancelar"
-        routerLink="/list-thought"
       >
         Cancelar
       </button>
