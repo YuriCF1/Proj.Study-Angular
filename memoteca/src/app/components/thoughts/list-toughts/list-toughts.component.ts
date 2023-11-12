@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ThoughtInterface } from '../ITthought';
-import { ThoughtServiceService } from '../thought-service.service';
+import { ThoughtService } from '../thought.service';
 
 @Component({
   selector: 'app-list-toughts',
@@ -28,12 +28,12 @@ export class ListToughtsComponent {
     // }
   ]
 
-  constructor(private service: ThoughtServiceService) {
-
-  }
+  constructor(private service: ThoughtService) {  }
 
   //ngOnInit executa o algoritmo assim que o component é iniciado
   ngOnInit(): void {
-    this.service.listIt()
+    this.service.listIt().subscribe((listaDePensamento) => {
+      this.listThought = listaDePensamento
+    })
   }
 }
