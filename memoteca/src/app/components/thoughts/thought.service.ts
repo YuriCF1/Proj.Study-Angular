@@ -24,4 +24,14 @@ export class ThoughtService {
   createThought(thoughtSent: ThoughtInterface): Observable<ThoughtInterface> {
     return this.http.post<ThoughtInterface>(this.API, thoughtSent)
   }
+
+  deleteThought(id: number): Observable<ThoughtInterface> {
+    const url = `${this.API}/${id}`
+    return this.http.delete<ThoughtInterface>(url)
+  }
+
+  getById(id: number): Observable<ThoughtInterface> {
+    const url = `${this.API}/${id}`
+    return this.http.get<ThoughtInterface>(url)
+  }
 }
