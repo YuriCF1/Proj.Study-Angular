@@ -1,0 +1,22 @@
+<section class="container excluir-pensamentos ff-inter">
+  <div class="modal">
+    <p>Tem certerza que deseja <b>excluir</b> esse pensamento?</p>
+    <div class="acoes">
+      <button
+        class="botao bota-excluir"
+        (click)="deleteThought()"
+        routerLink="/pensamentos/delete-thought/{{ pensamento.id }}"
+        >
+        Excluir
+      </button>
+      <button
+        class="botao bota-cancelar"
+        routerLink="/list-thought"
+        (clcik)="(cancel)"
+      >
+        Cancelar
+      </button>
+    </div>
+  </div>
+  <div class="overlay"></div>
+</section>
