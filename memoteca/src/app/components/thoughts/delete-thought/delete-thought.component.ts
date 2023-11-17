@@ -42,7 +42,7 @@ export class DeleteToughtComponent {
   }
 
   cancel() {
-    alert("CARALHO");
-    this.router.navigate(['/list-thoguth'])
+    alert("a");
+    this.router.navigate(['/list-thought'])
   }
 }
