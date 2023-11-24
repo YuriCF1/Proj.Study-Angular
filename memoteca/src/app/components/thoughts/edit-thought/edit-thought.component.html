@@ -1,0 +1,120 @@
+<section class="container editar-pensamentos ff-inter">
+  <header class="header">
+    <h2>Adicione um <br />pensamento novo:</h2>
+  </header>
+  <form>
+    <label for="pensamento">Pensamento</label>
+    <!-- Associando os dados com o arquivo TS
+    MÉTODO DE ASSOCIAÇÃO  Property Bind
+      - Colocar o valor dinâmico em colchetes
+    - Criar objeto lá no TS, e definir as chaves e valores
+--One way data biding  [value]="pensamento.conteudo"
+    -->
+    <!-- Preciso importar o FormsModule no app.module.ts para que o ngModule funciona no input abaixo-->
+    <input
+      class="input"
+      id="pensamento"
+      type="textarea"
+      name="pensamento"
+      placeholder="Digite seu pensamento"
+      [(ngModel)]="pensamentoEditado.conteudo"
+    />
+    <label for="autoria">Autoria</label>
+    <input
+      class="input"
+      id="autoria"
+      type="text"
+      name="autoria"
+      placeholder="Digite a autoria ou fonte"
+      [(ngModel)]="pensamentoEditado.autoria"
+    />
+    <label for="modelo1">Selecione o modelo do card:</label>
+    <div class="container-radio">
+      <div class="radio-modelo">
+        <label for="modelo1">
+          <input
+            type="radio"
+            id="modelo1"
+            value="modelo1"
+            [(ngModel)]="pensamentoEditado.modelo"
+            name="modelo-card"
+          />
+          <div class="custom-radio">
+            <span></span>
+          </div>
+          <span>Modelo 1</span>
+        </label>
+        Prévia:
+        <div class="modelo modelo1 ff-roboto-mono">
+          <img src="../../../../assets/imagens/modelo1.png" alt="Aspas azuis" />
+          <!-- Passando valores por Property Bind, sendo interpolação -->
+          <p class="conteudo">{{ pensamentoEditado.conteudo }}</p>
+          <p class="autoria">
+            <b>{{ pensamentoEditado.autoria }}</b>
+          </p>
+        </div>
+      </div>
+      <div class="radio-modelo">
+        <label for="modelo2">
+          <input
+            type="radio"
+            id="modelo2"
+            value="modelo2"
+            name="modelo-card"
+            [(ngModel)]="pensamentoEditado.modelo"
+          />
+          <div class="custom-radio">
+            <span></span>
+          </div>
+          <span>Modelo 2</span>
+        </label>
+        Prévia:
+        <div class="modelo modelo2 ff-roboto-mono">
+          <img
+            src="../../../../assets/imagens/modelo2.png"
+            alt="Aspas azul claro"
+          />
+          <p class="conteudo">{{ pensamentoEditado.conteudo }}</p>
+          <p class="autoria">
+            <b>{{ pensamentoEditado.autoria }}</b>
+          </p>
+        </div>
+      </div>
+      <div class="radio-modelo">
+        <label for="modelo3">
+          <input
+            type="radio"
+            id="modelo3"
+            value="modelo3"
+            name="modelo-card"
+            [(ngModel)]="pensamentoEditado.modelo"
+          />
+          <div class="custom-radio">
+            <span></span>
+          </div>
+          <span>Modelo 3</span>
+        </label>
+        Prévia:
+        <div class="modelo modelo3 ff-roboto-mono">
+          <img
+            src="../../../../assets/imagens/modelo3.png"
+            alt="Aspas verdes"
+          />
+          <p class="conteudo">{{ pensamentoEditado.conteudo }}</p>
+          <p class="autoria">
+            <b>{{ pensamentoEditado.autoria }}</b>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="acoes">
+      <!-- Event bind. Outro tipo de data bind unirecional, porém a direção é dp template para o componente  -->
+      <!-- Caso eu queira colocar uma classe no botão atual da rota, eu coloco tal propriedade na tag, e o nome  da classe que quero adicionar caso o botão esteja tivo -->
+      <!-- routerLinkActive="active" -->
+      <button (click)="editThought()" class="botao">Salvar</button>
+      <!-- Caso  eu queira redirecionar assim que for clicado, logo aqui no HTML -->
+      <!-- routerLink="/list-thought" -->
+      <button (click)="cancelEdit()" class="botao cancelar">Cancelar</button>
+    </div>
+  </form>
+</section>
