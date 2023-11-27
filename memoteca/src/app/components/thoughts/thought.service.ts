@@ -25,6 +25,11 @@ export class ThoughtService {
     return this.http.post<ThoughtInterface>(this.API, thoughtSent)
   }
 
+  editThought(thoughtClicked: ThoughtInterface): Observable<ThoughtInterface> {
+    const url = `${this.API}/${thoughtClicked.id}`
+    return this.http.put<ThoughtInterface>(url, thoughtClicked)
+  }
+
   deleteThought(id: number): Observable<ThoughtInterface> {
     const url = `${this.API}/${id}`
     return this.http.delete<ThoughtInterface>(url)
