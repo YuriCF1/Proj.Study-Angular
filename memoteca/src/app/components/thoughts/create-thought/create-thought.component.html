@@ -2,7 +2,7 @@
   <header class="header">
     <h2>Adicione um <br />pensamento novo:</h2>
   </header>
-  <form>
+  <form [formGroup]="form">
     <label for="pensamento">Pensamento</label>
     <!-- Associando os dados com o arquivo TS
     MÉTODO DE ASSOCIAÇÃO  Property Bind
@@ -15,19 +15,21 @@
       class="input"
       id="pensamento"
       type="textarea"
-      name="pensamento"
+      formControlName="conteudo"
       placeholder="Digite seu pensamento"
-      [(ngModel)]="pensamentoFeito.conteudo"
     />
+    <!-- ngModel, name foi quando havia uma vinculação biderecional sem o formulario reativo -->
+    <!-- [(ngModel)]="pensamentoFeito.conteudo" -->
+    <!-- name="pensamento" -->
     <label for="autoria">Autoria</label>
     <input
       class="input"
       id="autoria"
       type="text"
-      name="autoria"
+      formControlName="autoria"
       placeholder="Digite a autoria ou fonte"
-      [(ngModel)]="pensamentoFeito.autoria"
     />
+    <!-- [(ngModel)]="pensamentoFeito.autoria" -->
     <label for="modelo1">Selecione o modelo do card:</label>
     <div class="container-radio">
       <div class="radio-modelo">
@@ -36,9 +38,9 @@
             type="radio"
             id="modelo1"
             value="modelo1"
-            [(ngModel)]="pensamentoFeito.modelo"
-            name="modelo-card"
+            formControlName="modelo"
           />
+          <!-- [(ngModel)]="pensamentoFeito.modelo" -->
           <div class="custom-radio">
             <span></span>
           </div>
@@ -48,10 +50,12 @@
         <div class="modelo modelo1 ff-roboto-mono">
           <img src="../../../../assets/imagens/modelo1.png" alt="Aspas azuis" />
           <!-- Passando valores por Property Bind, sendo interpolação -->
-          <p class="conteudo">{{ pensamentoFeito.conteudo }}</p>
+          <p class="conteudo">{{ form.get("conteudo")?.value }}</p>
           <p class="autoria">
-            <b>{{ pensamentoFeito.autoria }}</b>
+            <b>{{ form.get("autoria")?.value }}</b>
           </p>
+          <!-- Maneira de pegar por property bind, sem o formulario reativo -->
+          <!-- <p class="conteudo">{{ pensamentoFeito.conteudo }}</p> -->
         </div>
       </div>
       <div class="radio-modelo">
@@ -60,9 +64,9 @@
             type="radio"
             id="modelo2"
             value="modelo2"
-            name="modelo-card"
-            [(ngModel)]="pensamentoFeito.modelo"
+            formControlName="modelo"
           />
+          <!-- [(ngModel)]="pensamentoFeito.modelo" -->
           <div class="custom-radio">
             <span></span>
           </div>
@@ -74,9 +78,9 @@
             src="../../../../assets/imagens/modelo2.png"
             alt="Aspas azul claro"
           />
-          <p class="conteudo">{{ pensamentoFeito.conteudo }}</p>
+          <p class="conteudo">{{ form.get("conteudo")?.value }}</p>
           <p class="autoria">
-            <b>{{ pensamentoFeito.autoria }}</b>
+            <b>{{ form.get("autoria")?.value }}</b>
           </p>
         </div>
       </div>
@@ -86,9 +90,9 @@
             type="radio"
             id="modelo3"
             value="modelo3"
-            name="modelo-card"
-            [(ngModel)]="pensamentoFeito.modelo"
+            formControlName="modelo"
           />
+          <!-- [(ngModel)]="pensamentoFeito.modelo" -->
           <div class="custom-radio">
             <span></span>
           </div>
@@ -100,9 +104,9 @@
             src="../../../../assets/imagens/modelo3.png"
             alt="Aspas verdes"
           />
-          <p class="conteudo">{{ pensamentoFeito.conteudo }}</p>
+          <p class="conteudo">{{ form.get("conteudo")?.value }}</p>
           <p class="autoria">
-            <b>{{ pensamentoFeito.autoria }}</b>
+            <b>{{ form.get("autoria")?.value }}</b>
           </p>
         </div>
       </div>
