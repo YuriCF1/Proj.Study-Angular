@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ThoughtInterface } from '../ITthought';
 import { ThoughtService } from '../thought.service';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-thought',
@@ -30,17 +30,20 @@ export class CreateThoughtComponent {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      conteudo: ['Formulario reativo'],
-      autoria: ['Angular'],
+      conteudo: ['Formulario reativo', [Validators.required]],
+      autoria: ['Angular', [Validators.required]],
       modelo: ['modelo1']
     })
   }
 
   criarPensamento() {
-    // this.service.createThought(this.pensamentoFeito).subscribe(() => {
-    this.service.createThought(this.form.value).subscribe(() => {
-      this.router.navigate(['/list-thought'])
-    })
+    console.log(this.form);
+    if (this.form.valid) {
+      // this.service.createThought(this.pensamentoFeito).subscribe(() => {
+      this.service.createThought(this.form.value).subscribe(() => {
+        this.router.navigate(['/list-thought'])
+      })
+    }
   }
 
   cancelandoPensamento() {
