@@ -19,7 +19,10 @@
       placeholder="Digite seu pensamento"
     />
     <!-- Abaixo: Se o campo tiver algum erro e esse campo foi tocado -->
-    <div class="mensagem__erro" *ngIf="form.get('conteudo')?.errors && form.get('conteudo')?.touched">
+    <div
+      class="mensagem__erro"
+      *ngIf="form.get('conteudo')?.errors && form.get('conteudo')?.touched"
+    >
       O pensamento é obrigatória
     </div>
     <!-- ngModel, name foi quando havia uma vinculação biderecional sem o formulario reativo -->
@@ -131,7 +134,9 @@
       <!-- Event bind. Outro tipo de data bind unirecional, porém a direção é dp template para o componente  -->
       <!-- Caso eu queira colocar uma classe no botão atual da rota, eu coloco tal propriedade na tag, e o nome  da classe que quero adicionar caso o botão esteja tivo -->
       <!-- routerLinkActive="active" -->
-      <button (click)="criarPensamento()" class="botao">Salvar</button>
+      <button (click)="criarPensamento()" [disabled]="!form.valid" [ngClass]="habilitarBotao()">
+        Salvar
+      </button>
       <!-- Caso  eu queira redirecionar assim que for clicado, logo aqui no HTML -->
       <!-- routerLink="/list-thought" -->
       <button (click)="cancelandoPensamento()" class="botao cancelar">
