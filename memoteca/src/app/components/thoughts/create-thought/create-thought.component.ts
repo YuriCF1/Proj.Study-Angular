@@ -43,7 +43,9 @@ export class CreateThoughtComponent {
   }
 
   criarPensamento() {
-    console.log(this.form.status);
+    //Mostrando erros no console
+    // console.log(this.form.status);
+    console.log(this.form.get('autoria')?.errors);
     if (this.form.valid) {
       // this.service.createThought(this.pensamentoFeito).subscribe(() => {
       this.service.createThought(this.form.value).subscribe(() => {
