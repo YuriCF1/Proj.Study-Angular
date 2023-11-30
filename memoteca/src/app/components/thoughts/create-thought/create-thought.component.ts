@@ -57,4 +57,13 @@ export class CreateThoughtComponent {
   cancelandoPensamento() {
     this.router.navigate(['/list-thought'])
   }
+
+  habilitarBotao(): string {
+    console.log(this.form);
+    if (this.form.valid) {
+      return 'botao'
+    } else {
+      return 'botao__desabilitado'
+    }
+  }
 }
