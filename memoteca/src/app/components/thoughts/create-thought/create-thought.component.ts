@@ -30,14 +30,20 @@ export class CreateThoughtComponent {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      conteudo: ['Formulario reativo', [Validators.required]],
-      autoria: ['Angular', [Validators.required]],
+      conteudo: ['', Validators.compose([
+        Validators.required,
+        Validators.pattern(/(.|\s)*\S(.|\s)*/)
+      ])],
+      autoria: ['', Validators.compose([
+        Validators.required,
+        Validators.minLength(3)
+      ])],
       modelo: ['modelo1']
     })
   }
 
   criarPensamento() {
-    console.log(this.form);
+    console.log(this.form.status);
     if (this.form.valid) {
       // this.service.createThought(this.pensamentoFeito).subscribe(() => {
       this.service.createThought(this.form.value).subscribe(() => {
