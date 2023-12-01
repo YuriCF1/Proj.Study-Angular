@@ -1,10 +1,20 @@
 .acoes {
   display: flex;
   justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 
 .botao {
   margin: 5px;
+  margin-top: 70px;
+  width: 200px;
+  cursor: pointer;
+}
+
+.cancelar {
+  background-color: #801515;
+  border: #801515;
 }
 
 .editar-pensamentos {
@@ -120,6 +130,20 @@ span {
   height: 18px;
   background: transparent;
   border-radius: 50%;
+}
+
+.mensagem__erro {
+  font-size: 12px;
+  margin-left: 5px;
+  color: red;
+  margin-top: -25px;
+  margin-bottom: 20px;
+}
+
+.botao__desabilitado {
+  margin: 5px;
+  margin-top: 70px;
+  width: 200px;
 }
 
 input[type='radio']:checked+.custom-radio {
