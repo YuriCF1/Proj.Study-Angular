@@ -48,6 +48,10 @@
     >
       A autoria precisa de ter mais de 3 caracteres
     </div>
+    <div class="mensagem__erro"
+      *ngIf="form.get('autoria')?.errors?.['lowerCase'] && form.get('autoria')?.touched">
+        Esse campo aceita apenas letras minúsculas
+</div>
     <!-- [(ngModel)]="pensamentoFeito.autoria" -->
     <label for="modelo1">Selecione o modelo do card:</label>
     <div class="container-radio">
@@ -134,7 +138,11 @@
       <!-- Event bind. Outro tipo de data bind unirecional, porém a direção é dp template para o componente  -->
       <!-- Caso eu queira colocar uma classe no botão atual da rota, eu coloco tal propriedade na tag, e o nome  da classe que quero adicionar caso o botão esteja tivo -->
       <!-- routerLinkActive="active" -->
-      <button (click)="criarPensamento()" [disabled]="!form.valid" [ngClass]="habilitarBotao()">
+      <button
+        (click)="criarPensamento()"
+        [disabled]="!form.valid"
+        [ngClass]="habilitarBotao()"
+      >
         Salvar
       </button>
       <!-- Caso  eu queira redirecionar assim que for clicado, logo aqui no HTML -->
