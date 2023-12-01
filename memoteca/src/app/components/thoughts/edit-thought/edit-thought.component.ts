@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ThoughtInterface } from '../ITthought';
 import { ThoughtService } from '../thought.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-thought',
@@ -9,33 +10,63 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./edit-thought.component.css']
 })
 export class EditThoughtComponent {
+  // pensamentoEditado: ThoughtInterface = {
+  //   id: 0,
+  //   conteudo: '',
+  //   autoria: '',
+  //   modelo: '',
+  // }
+
+  form!: FormGroup;
 
   constructor(
     private service: ThoughtService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder
   ) { }
-
-  pensamentoEditado: ThoughtInterface = {
-    id: 0,
-    conteudo: '',
-    autoria: '',
-    modelo: '',
-  }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id')
-    this.service.getById(parseInt(id!)).subscribe((thoughtCaughtById) => {
-      this.pensamentoEditado = thoughtCaughtById
+    this.form = this.formBuilder.group({
+      id: `${id}`,
+      conteudo: ['', Validators.compose([
+        Validators.required,
+        Validators.pattern(/(.|\s)*\S(.|\s)*/)
+      ])],
+      autoria: ['', Validators.compose([
+        Validators.required,
+        Validators.minLength(3)
+      ])],
+      modelo: ['modelo1']
     })
+    console.log(this.form.valid);
+
+    console.log(id);
+    // this.service.getById(parseInt(id!)).subscribe((thoughtCaughtById) => {
+    //   this.pensamentoEditado = thoughtCaughtById;
+    // })
   }
 
   editThought() {
-    this.service.editThought(this.pensamentoEditado).subscribe(() => {
-      this.router.navigate(['/list-thought'])
-    })
+    console.log('VALIDO?', this.form.valid);
+    console.log('FORM?', this.form.value);
+    if (this.form.value) {
+      // this.service.editThought(this.pensamentoEditado).subscribe(() => {
+      this.service.editThought(this.form.value).subscribe(() => {
+        this.router.navigate(['/list-thought'])
+      })
+    }
   }
 
+  habilitarBotao(): string {
+    console.log(this.form);
+    if (this.form.valid) {
+      return 'botao'
+    } else {
+      return 'botao__desabilitado'
+    }
+  }
 
   cancelEdit() {
     this.router.navigate(['/list-thought'])
