@@ -3,6 +3,7 @@ import { ThoughtInterface } from '../ITthought';
 import { ThoughtService } from '../thought.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { lowerCaseValidator } from './lowerCaseValidator';
 
 @Component({
   selector: 'app-create-thought',
@@ -36,7 +37,8 @@ export class CreateThoughtComponent {
       ])],
       autoria: ['', Validators.compose([
         Validators.required,
-        Validators.minLength(3)
+        Validators.minLength(3),
+        lowerCaseValidator
       ])],
       modelo: ['modelo1']
     })
