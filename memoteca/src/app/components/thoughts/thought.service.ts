@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http"
+import { HttpClient, HttpParams } from "@angular/common/http"
 import { ThoughtInterface } from './ITthought';
 import { Observable } from 'rxjs';
 
@@ -15,10 +15,25 @@ export class ThoughtService {
 
   }
 
-
   //Getting thoughts
-  listIt(): Observable<ThoughtInterface[]> {
-    return this.http.get<ThoughtInterface[]>(this.API)
+  listIt(page: number): Observable<ThoughtInterface[]> {
+    //--Sem repaginacao
+    // return this.http.get<ThoughtInterface[]>(this.API)
+    //GET /posts?_page=7&_limit=20 -- //Exemplo da api do json server
+
+    //--Com repaginacao
+    /*GET /sua-rota?_page=2&_limit=6
+    Isso solicitará à API JSON Servera segunda página dos resultados paginados,
+    que começará do sétimo pensamento em diante, novamente limitado a 6 itens por página. */
+
+    // const itensPerPage = 6;
+    // return this.http.get<ThoughtInterface[]>(`${this.API}?_page=${page}&_limit=${itensPerPage}`)
+
+    //--Com repaginacao usando o HttpParams
+    const itensPerPage = 6;
+    let params = new HttpParams().set("_page", page).set("_limit", itensPerPage);
+
+    return this.http.get<ThoughtInterface[]>(this.API, {params: params}) //Obs: NO JS, chave do mesmo nome do valor, pode omitir = {params}
   }
 
   createThought(thoughtSent: ThoughtInterface): Observable<ThoughtInterface> {
@@ -40,3 +55,48 @@ export class ThoughtService {
     return this.http.get<ThoughtInterface>(url)
   }
 }
+
+/*EXEMPLO DE MÉTODOS DO HTTPPARAMS
+
+import { HttpParams } from '@angular/common/http';
+
+// Exemplo de corpo de requisição (parâmetros)
+const params = new HttpParams()
+  .append('category', 'angular')
+  .append('category', 'typescript')
+  .append('author', 'John Doe')
+  .append('published', 'true');
+
+// Exemplo de uso dos métodos
+console.log(params.has('category'));      // true
+console.log(params.has('tag'));           // false
+
+console.log(params.get('category'));       // 'angular'
+console.log(params.get('tag'));            // null
+
+console.log(params.getAll('category'));    // ['angular', 'typescript']
+console.log(params.getAll('tag'));         // []
+
+console.log(params.keys());                // ['category', 'author', 'published']
+
+const newParams = params.append('tag', 'http');  // Adiciona um novo valor ao parâmetro 'tag'
+console.log(newParams.getAll('tag'));            // ['http']
+
+const appendedParams = params.appendAll({ 'tag': ['http', 'javascript'] });
+console.log(appendedParams.getAll('tag'));       // ['http', 'javascript']
+
+const deletedParams = params.delete('category'); // Remove um valor específico do parâmetro 'category'
+console.log(deletedParams.getAll('category'));   // ['typescript']
+
+const deletedAllParams = params.delete('category', 'author'); // Remove todos os valores dos parâmetros 'category' e 'author'
+console.log(deletedAllParams.getAll('category'));             // []
+console.log(deletedAllParams.getAll('author'));               // []
+
+const serializedString = params.toString();
+console.log(serializedString);
+// Saída esperada: 'category=angular&category=typescript&author=John%20Doe&published=true'
+
+
+
+
+*/
