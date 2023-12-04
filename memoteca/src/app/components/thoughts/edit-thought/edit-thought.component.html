@@ -2,7 +2,7 @@
   <header class="header">
     <h2>Adicione um <br />pensamento novo:</h2>
   </header>
-  <form [formGroup]="form">
+  <form [formGroup]="form" *ngIf="form">
     <label for="pensamento">Pensamento</label>
     <!-- Associando os dados com o arquivo TS
     MÉTODO DE ASSOCIAÇÃO  Property Bind
@@ -15,7 +15,6 @@
       class="input"
       id="pensamento"
       type="textarea"
-      name="pensamento"
       placeholder="Digite seu pensamento"
       formControlName="conteudo"
     />
