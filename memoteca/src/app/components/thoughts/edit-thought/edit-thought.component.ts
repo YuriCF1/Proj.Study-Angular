@@ -3,6 +3,7 @@ import { ThoughtInterface } from '../ITthought';
 import { ThoughtService } from '../thought.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Xliff } from '@angular/compiler';
 
 @Component({
   selector: 'app-edit-thought',
@@ -26,27 +27,44 @@ export class EditThoughtComponent {
     private formBuilder: FormBuilder
   ) { }
 
+  //Construindo o formBuilder baseado numa requisicao de por id
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id')
-    this.form = this.formBuilder.group({
-      id: `${id}`,
-      conteudo: ['', Validators.compose([
-        Validators.required,
-        Validators.pattern(/(.|\s)*\S(.|\s)*/)
-      ])],
-      autoria: ['', Validators.compose([
-        Validators.required,
-        Validators.minLength(3)
-      ])],
-      modelo: ['modelo1']
+    this.service.getById(parseInt(id!)).subscribe((resultedThought) => {
+      this.form = this.formBuilder.group({
+        id: [resultedThought.id],
+        conteudo: [resultedThought.conteudo, Validators.compose([
+          Validators.required,
+          Validators.pattern(/(.|\s)*\S(.|\s)*/)
+        ])],
+        autoria: [resultedThought.autoria, Validators.compose([
+          Validators.required,
+          Validators.minLength(3)
+        ])],
+        modelo: [resultedThought.modelo]
+      })
     })
-    console.log(this.form.valid);
-
-    console.log(id);
-    // this.service.getById(parseInt(id!)).subscribe((thoughtCaughtById) => {
-    //   this.pensamentoEditado = thoughtCaughtById;
-    // })
   }
+
+  // ngOnInit(): void {
+  //   const id = this.route.snapshot.paramMap.get('id')
+  //   this.form = this.formBuilder.group({
+  //     id: `${id}`,
+  //     conteudo: ['', Validators.compose([
+  //       Validators.required,
+  //       Validators.pattern(/(.|\s)*\S(.|\s)*/)
+  //     ])],
+  //     autoria: ['', Validators.compose([
+  //       Validators.required,
+  //       Validators.minLength(3)
+  //     ])],
+  //     modelo: ['modelo1']
+  //   })
+  // }
+
+  // this.service.getById(parseInt(id!)).subscribe((thoughtCaughtById) => {
+  //   this.pensamentoEditado = thoughtCaughtById;
+  // })
 
   editThought() {
     console.log('VALIDO?', this.form.valid);
