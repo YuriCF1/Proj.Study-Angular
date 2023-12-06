@@ -12,6 +12,11 @@
     </div>
   </div>
 </section>
+<app-button-load
+  [carregarMaisPensamentosButton]="carregarMaisPensamentosList"
+  (click)="loadMoreThoughts()"
+>
+</app-button-load>
 <!-- <ng-template [ngTemplateOutlet]="outlet" [ngOutletContext]="context"> -->
 <ng-template #semPensamentos>
   <div class="ff-inter sem-pensamentos">
