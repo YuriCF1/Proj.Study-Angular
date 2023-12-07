@@ -16,7 +16,7 @@ export class ThoughtService {
   }
 
   //Getting thoughts
-  listIt(page: number): Observable<ThoughtInterface[]> {
+  listIt(page: number, filterSearch: string): Observable<ThoughtInterface[]> {
     //--Sem repaginacao
     // return this.http.get<ThoughtInterface[]>(this.API)
     //GET /posts?_page=7&_limit=20 -- //Exemplo da api do json server
@@ -31,9 +31,37 @@ export class ThoughtService {
 
     //--Com repaginacao usando o HttpParams
     const itensPerPage = 6;
-    let params = new HttpParams().set("_page", page).set("_limit", itensPerPage);
+    let params = new HttpParams()
+      .set("_page", page)
+      .set("_limit", itensPerPage);
 
-    return this.http.get<ThoughtInterface[]>(this.API, {params: params}) //Obs: NO JS, chave do mesmo nome do valor, pode omitir = {params}
+    if (filterSearch.trim().length > 2) {//trim = remove espacos vazios.
+      //2 = dificilmente alguem vai buscar algo contendo 2 caracteres. Fazendo isso, diminui a quantidade de requisicoes
+      params = params.set("q", filterSearch)
+
+    }
+    return this.http.get<ThoughtInterface[]>(this.API, { params: params }) //Obs: NO JS, chave do mesmo nome do valor, pode omitir = {params}
+
+    /*{
+
+      PARA BUSCAS MAIS COMPLEXAS NA API JSON SERVER
+
+    "posts": [
+      { "id": 1, "title": "json-server", "author": "typicode" }
+    ],
+    "comments": [
+      { "id": 1, "body": "some comment", "postId": 1 }
+    ],
+    "profile": { "name": "typicode" }
+
+    GET /posts?title=json-server&author=typicode
+
+    Para filtrar posts pelo título e autor
+    GET /comments?author.name=typicode
+
+Para filtrar comentários pela propriedade ‘name’ do autor, usando o . (ponto) para acessar objetos aninhados.
+  }*/
+
   }
 
   createThought(thoughtSent: ThoughtInterface): Observable<ThoughtInterface> {
