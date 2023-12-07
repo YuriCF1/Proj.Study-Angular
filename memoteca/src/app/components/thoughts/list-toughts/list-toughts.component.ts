@@ -9,8 +9,6 @@ import { ThoughtService } from '../thought.service';
 })
 export class ListToughtsComponent {
 
-  carregarMaisPensamentosList: boolean = true;
-
   listThought: ThoughtInterface[] = [
     // {
     //   id: 1,
@@ -30,25 +28,37 @@ export class ListToughtsComponent {
     //   modelo: "modelo2"
     // }
   ]
+  currentPage: number = 1;
+  carregarMaisPensamentosList: boolean = true;
+  filterSearch: string = '';
+
 
   constructor(private service: ThoughtService) { }
 
   //ngOnInit executa o algoritmo assim que o component é iniciado
-  currentPage: number = 1;
   ngOnInit(): void {
-    this.service.listIt(this.currentPage).subscribe((listaDePensamento) => {
+    this.service.listIt(this.currentPage, this.filterSearch).subscribe((listaDePensamento) => {
       this.listThought = listaDePensamento
     })
   }
 
   loadMoreThoughts() {
     //++ = incrementando o número de páginas para carregar os outros pensamentoss
-    this.service.listIt(++this.currentPage)
+    this.service.listIt(++this.currentPage, this.filterSearch)
       .subscribe(listLoadedFromAPI => {
         this.listThought.push(...listLoadedFromAPI); //Pegando o resultado da lista e acrescendo aos já existentes
         if (!listLoadedFromAPI.length) {
           this.carregarMaisPensamentosList = false;
         }
       })
+  }
+
+  searchThoughts() {
+    this.carregarMaisPensamentosList = true; //Botao de carregar mais pensamentos sempre renderizado
+    this.currentPage = 1; //Reiniciando a página de busca. (Quantidade de pensamentos mostrados. Para 1)
+    this.service.listIt(this.currentPage, this.filterSearch)
+    .subscribe(thoughtsSearched => {
+      this.listThought = thoughtsSearched;
+    })
   }
 }
