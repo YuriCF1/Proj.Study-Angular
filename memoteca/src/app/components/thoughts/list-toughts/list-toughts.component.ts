@@ -37,6 +37,14 @@ export class ListToughtsComponent {
 
   //ngOnInit executa o algoritmo assim que o component é iniciado
   ngOnInit(): void {
+    // this.service.listIt(this.currentPage, this.filterSearch).subscribe((listaDePensamento) => {
+    //   this.listThought = listaDePensamento
+    // })
+
+    this.listAllThoughts()
+  }
+
+  listAllThoughts() {
     this.service.listIt(this.currentPage, this.filterSearch).subscribe((listaDePensamento) => {
       this.listThought = listaDePensamento
     })
@@ -57,8 +65,18 @@ export class ListToughtsComponent {
     this.carregarMaisPensamentosList = true; //Botao de carregar mais pensamentos sempre renderizado
     this.currentPage = 1; //Reiniciando a página de busca. (Quantidade de pensamentos mostrados. Para 1)
     this.service.listIt(this.currentPage, this.filterSearch)
-    .subscribe(thoughtsSearched => {
-      this.listThought = thoughtsSearched;
-    })
+      .subscribe(thoughtsSearched => {
+        this.listThought = thoughtsSearched;
+      })
+  }
+
+  listFavoritesSentences() {
+    this.carregarMaisPensamentosList = true;
+    this.currentPage = 1;
+    this.service.listFavorites(this.currentPage, this.filterSearch)
+      .subscribe(fauvouriteList => {
+        this.listThought = fauvouriteList;
+      })
+
   }
 }
