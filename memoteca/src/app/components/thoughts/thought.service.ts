@@ -89,6 +89,20 @@ Para filtrar comentários pela propriedade ‘name’ do autor, usando o . (pont
     return this.editThought(clickedThought)
   }
 
+  listFavorites(page: number, filterOfFavorite: string): Observable<ThoughtInterface[]> {
+    const itensPerPage = 6;
+    let params = new HttpParams()
+      .set("_page", page)
+      .set("_limit", itensPerPage)
+      .set("favorite", true);
+
+    if (filterOfFavorite.trim().length > 2) {//trim = remove espacos vazios.
+      //2 = dificilmente alguem vai buscar algo contendo 2 caracteres. Fazendo isso, diminui a quantidade de requisicoes
+      params = params.set("q", filterOfFavorite)
+
+    }
+    return this.http.get<ThoughtInterface[]>(this.API, { params: params }) //Obs: NO JS,
+  }
 }
 
 /*EXEMPLO DE MÉTODOS DO HTTPPARAMS
