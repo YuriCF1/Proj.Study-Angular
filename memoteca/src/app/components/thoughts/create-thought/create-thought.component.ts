@@ -40,7 +40,8 @@ export class CreateThoughtComponent {
         Validators.minLength(3),
         lowerCaseValidator
       ])],
-      modelo: ['modelo1']
+      modelo: ['modelo1'],
+      favourite: [false]
     })
   }
 

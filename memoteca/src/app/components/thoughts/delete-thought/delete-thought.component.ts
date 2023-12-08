@@ -14,7 +14,8 @@ export class DeleteToughtComponent {
     id: 0,
     conteudo: '',
     autoria: '',
-    modelo: ''
+    modelo: '',
+    favorite: false
   }
 
   constructor(
