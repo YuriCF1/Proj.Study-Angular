@@ -41,7 +41,8 @@ export class EditThoughtComponent {
           Validators.required,
           Validators.minLength(3)
         ])],
-        modelo: [resultedThought.modelo]
+        modelo: [resultedThought.modelo],
+        favorite: [resultedThought.favorite]
       })
     })
   }
