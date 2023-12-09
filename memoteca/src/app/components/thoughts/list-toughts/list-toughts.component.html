@@ -28,7 +28,11 @@
   <!-- Fazendo um IF ELSE no angular -->
   <div class="mural" *ngIf="listThought.length > 0; else semPensamentos">
     <div *ngFor="let thought of listThought">
-      <app-thought [pensamento]="thought"></app-thought>
+      <app-thought
+        [pensamento]="thought"
+        [listFavorites]="listFavoriteToChildComponent"
+      >
+      </app-thought>
     </div>
   </div>
 </section>
