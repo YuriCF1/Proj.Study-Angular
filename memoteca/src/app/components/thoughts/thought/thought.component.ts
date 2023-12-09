@@ -22,6 +22,8 @@ export class ThoughtComponent {
     favorite: false
   }
 
+  @Input() listFavorites: ThoughtInterface[] = [];
+
   larguraPensamento(): string {
     if (this.pensamento.conteudo.length > 256) {
       return "pensamento-g"
@@ -38,6 +40,8 @@ export class ThoughtComponent {
   }
 
   updateFavoriteList() {
-    this.service.changeFavoriteStatus(this.pensamento).subscribe();
+    this.service.changeFavoriteStatus(this.pensamento).subscribe(() => {
+      this.listFavorites.splice(this.listFavorites.indexOf(this.pensamento), 1)
+    });
   }
 }
