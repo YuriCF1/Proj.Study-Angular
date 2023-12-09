@@ -85,15 +85,13 @@ Para filtrar comentários pela propriedade ‘name’ do autor, usando o . (pont
     const url = `${this.API}/${id}`
     return this.http.get<ThoughtInterface>(url)
   }
+
   changeFavoriteStatus(clickedThought: ThoughtInterface): Observable<ThoughtInterface> {
     clickedThought.favorite = !clickedThought.favorite;
     // const url = `${this.API}/${clickedThought.id}`
     // return this.http.put<ThoughtInterface>(url, clickedThought)
     return this.editThought(clickedThought)
   }
-
-
-
 }
 /*
 //Método antigo para listar favoritos. Aprimorados no 'listIt'
