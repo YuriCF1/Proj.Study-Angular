@@ -22,6 +22,7 @@ export class ListToughtsComponent {
   carregarMaisPensamentosList: boolean = true;
   filterSearch: string = '';
   favorite: boolean = false;
+  listFavoriteToChildComponent: ThoughtInterface[] = [];
 
   constructor(private service: ThoughtService) { }
 
@@ -64,8 +65,9 @@ export class ListToughtsComponent {
     this.carregarMaisPensamentosList = true;
     this.currentPage = 1;
     this.service.listIt(this.currentPage, this.filterSearch, this.favorite = true)
-      .subscribe(fauvouriteList => {
-        this.listThought = fauvouriteList;
+      .subscribe(fauvoriteList => {
+        this.listThought = fauvoriteList;
+        this.listFavoriteToChildComponent = fauvoriteList;
       })
   }
 }
