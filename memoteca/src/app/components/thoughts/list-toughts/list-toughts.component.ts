@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ThoughtInterface } from '../ITthought';
 import { ThoughtService } from '../thought.service';
+import { RouteReuseStrategy, Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-toughts',
@@ -24,7 +25,10 @@ export class ListToughtsComponent {
   favorite: boolean = false;
   listFavoriteToChildComponent: ThoughtInterface[] = [];
 
-  constructor(private service: ThoughtService) { }
+  constructor(
+    private service: ThoughtService,
+    private router: Router
+    ) { }
 
   //ngOnInit executa o algoritmo assim que o component é iniciado
   ngOnInit(): void {
@@ -35,7 +39,17 @@ export class ListToughtsComponent {
     this.listAllThoughts()
   }
 
+  reloadList() {
+    this.favorite = false;
+    this.currentPage = 1;
+    // this.router.routeReuseStrategy.shouldReuseRoute = () = false;
+    // this.router.onSameUrlNavigation = 'reload'
+    this.router.navigate([this.router.url])
+  }
+
   listAllThoughts() {
+    //Recarrega a página, porém faz reload em tudo
+    // location.reload();
     this.service.listIt(this.currentPage, this.filterSearch, this.favorite = false).subscribe((listaDePensamento) => {
       this.listThought = listaDePensamento
     })
