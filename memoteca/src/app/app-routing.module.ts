@@ -5,11 +5,17 @@ import { ListToughtsComponent } from './components/thoughts/list-toughts/list-to
 import { DeleteToughtComponent } from './components/thoughts/delete-thought/delete-thought.component';
 import { EditThoughtComponent } from './components/thoughts/edit-thought/edit-thought.component';
 
+import { RouteReuseStrategy } from '@angular/router';
+import { CustomReuseStrategy } from '../../../memoteca/src/app/components/thoughts/list-toughts/custom-reuse-estrategy'
+
 const routes: Routes = [
   {
     path: '',
     redirectTo: 'list-thought',
-    pathMatch: 'full'
+    pathMatch: 'full',
+    data: {
+      reuseComponent: true
+    }
   }, {
     path: 'list-thought',
     component: ListToughtsComponent
@@ -30,7 +36,10 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })],
+  exports: [RouterModule],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: CustomReuseStrategy }
+  ],
 })
 export class AppRoutingModule { }
