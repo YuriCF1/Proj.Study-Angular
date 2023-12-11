@@ -24,11 +24,12 @@ export class ListToughtsComponent {
   filterSearch: string = '';
   favorite: boolean = false;
   listFavoriteToChildComponent: ThoughtInterface[] = [];
+  title: string = "Meu Mural";
 
   constructor(
     private service: ThoughtService,
     private router: Router
-    ) { }
+  ) { }
 
   //ngOnInit executa o algoritmo assim que o component é iniciado
   ngOnInit(): void {
@@ -76,6 +77,7 @@ export class ListToughtsComponent {
   }
 
   listFavoritesSentences() {
+    this.title = "Meus Favoritos";
     this.carregarMaisPensamentosList = true;
     this.currentPage = 1;
     this.service.listIt(this.currentPage, this.filterSearch, this.favorite = true)
