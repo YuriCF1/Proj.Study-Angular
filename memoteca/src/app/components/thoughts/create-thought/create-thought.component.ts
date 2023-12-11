@@ -41,7 +41,7 @@ export class CreateThoughtComponent {
         lowerCaseValidator
       ])],
       modelo: ['modelo1'],
-      favourite: [false]
+      favorite: [false]
     })
   }
 
