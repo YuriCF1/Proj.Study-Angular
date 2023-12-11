@@ -27,6 +27,13 @@ h2 {
   text-align: center;
 }
 
+h4 {
+  color: #154580;
+  font-weight: bold;
+  font-size: 1rem;
+  text-align: center;
+}
+
 .header {
   margin: 1rem auto 2rem;
 }
