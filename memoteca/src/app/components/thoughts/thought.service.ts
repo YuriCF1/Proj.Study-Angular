@@ -9,7 +9,11 @@ import { Observable } from 'rxjs';
 })
 export class ThoughtService {
 
-  private readonly API = 'http://localhost:3000/pensamentos'
+  //URL para teste local
+  // private readonly API = 'http://localhost:3000/pensamentos'
+
+  //Deploy
+  private readonly API = 'https://savethought-backend.onrender.com/pensamentos'
 
   constructor(private http: HttpClient) {
 
